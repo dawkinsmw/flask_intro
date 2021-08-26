@@ -20,8 +20,20 @@ services:
     networks:
       - docker-flask-template-net
 
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - todo-mysql-data:/var/lib/mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: todos
+    networks:
+        - docker-flask-template-net
 
-  # Create a custom docker network if it does not exist already
+volumes:
+  todo-mysql-data:
+
+        # Create a custom docker network if it does not exist already
 networks:
   docker-flask-template-net:
     name: docker-flask-template-net
